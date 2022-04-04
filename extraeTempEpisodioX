@@ -8,6 +8,13 @@ function extraeTempEpisodioX($texto)
     $estimaciones=explode("x", $matches[0]);
     $datos["temporada"]=$estimaciones[0];
     $datos["episodio"]=$estimaciones[1];
+    
+    if (($datos["temporada"]=="") && ($datos["episodio"]=="")) {
+        preg_match('/[0-9]*[0-9]×[0-9][0-9]*/', $texto, $matches);
+        $estimaciones=explode("×", $matches[0]);
+        $datos["temporada"]=$estimaciones[0];
+        $datos["episodio"]=$estimaciones[1];
+    }
 
     return $datos;
 } 
